@@ -1,0 +1,35 @@
+{
+    "name": "vaimo/module-carousel",
+    "type": "magento2-module",
+    "description": "Carousel module for Magento 2",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Caroline Norin",
+            "email": "caroline.norin@vaimo.com"
+        },
+        {
+            "name": "Pontus Gustafsson",
+            "email": "pontus.gustafsson@vaimo.com"
+        },
+        {
+            "name": "Roman Zakharenkov",
+            "email": "roman.zakharenkov@vaimo.com"
+        },
+        {
+            "name": "Nhung Doan",
+            "email": "nhung.doan@vaimo.com"
+        }
+    ],
+    "require": {
+        "magento/framework": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Vaimo\\Carousel\\": ""
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<?php
+/**
+ * Copyright Vaimo Group. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/* @var $block \Vaimo\Carousel\Block\Widget\Carousel */
+
+$carouselId = $block->getCarousel();
+echo $this->getLayout()
+        ->createBlock('Vaimo\Carousel\Block\CarouselItem')
+        ->setCarouselId($carouselId)
+        ->setTemplate('Vaimo_Carousel::carousel/react.phtml')
+        ->toHtml();
+?>

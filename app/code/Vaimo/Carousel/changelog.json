@@ -1,0 +1,28 @@
+{
+    "2.0.0": {
+        "breaking": [
+            "Properties passed down to the library have changed, some are still available, but behaviour might be slightly different"
+        ],
+        "overview": [
+            "New widget template using React",
+            "Backend API for a potential PWA implementation was added"
+        ]
+    },
+    "1.2.11": {
+        "overview": [
+            "When running 'm2 setup:upgrade' on a project (running Magento 2.3 and above), which includes the module_carousel module,",
+            "you might get the following error:",
+            "'Notice: Undefined index: vaimo_carousel_item in .../Db/SchemaBuilder.php on line 152'",
+            "The root-cause is a wrong foreign key definition in the Setup/InstallSchema.php file,",
+            "which references to an incorrect table (vaimo_carousel_item rather than vaimo_carousel_items)"
+        ],
+        "fix": [
+            "run the following commands on your DB:",
+            "# delete the module registration entry in order to re-trigger creation of tables",
+            "DELETE FROM setup_module WHERE module = 'Vaimo_Carousel' LIMIT 1;",
+            "# delete the old MySQL table, which holds the wrong foreignKey definition",
+            "DROP TABLE `vaimo_carousel_value`;",
+            "and run 'm2 setup:upgrade' again"
+        ]
+    }
+}

@@ -1,0 +1,50 @@
+{
+  "name": "module-carousel",
+  "version": "2.0.0",
+  "private": true,
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.9.0"
+  },
+  "scripts": {
+    "build": "gulp react",
+    "grr": "grunt babel"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-modules-requirejs": "^0.1.4",
+    "babel-preset-react": "^6.24.1",
+    "del": "^4.1.1",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^7.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-plumber": "^1.2.0",
+    "load-grunt-tasks": "^4.0.0"
+  },
+  "dependencies": {
+    "react-id-swiper": "^2.3.2",
+    "swiper": "^5.0.3",
+    "unique-string": "^2.0.0"
+  }
+}

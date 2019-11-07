@@ -1,0 +1,25 @@
+{
+    "name": "popesites/module-quickorder",
+    "description": "Bulk order creation using product list",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "email": "info@popesites.tech",
+            "name": "Popesites"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "magento/module-store": "*",
+        "magento/module-sales": "*",
+        "magento/framework": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Popesites\\Quickorder\\": ""
+        }
+    }
+}

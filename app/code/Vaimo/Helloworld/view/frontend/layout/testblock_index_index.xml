@@ -1,0 +1,14 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd" layout="1column">
+    <body>
+        <referenceContainer name="content">
+            <block class="Vaimo\Helloworld\Block\Helloworld" name="helloworld" template="helloworld.phtml" />
+            <!--<block type="enterprise_banner/widget_banner" name="vaimo_widget" as="vaimo_widget" template="vaimo/widget/hero.phtml">-->
+                <!--<action method="setDisplayMode"><value>fixed</value></action>-->
+                <!--<action method="setBannerIds"><value>4</value></action>-->
+            <!--</block>-->
+            <block class="Vaimo\Helloworld\Block\Widget\Samplewidget" name="samplewidget" template="widget/samplewidget.phtml" />
+
+            <block class="Vaimo\Helloworld\Block\DynamicBlock" name="dynamicblock" template="dynamicblock.phtml" />
+        </referenceContainer>
+    </body>
+</page>

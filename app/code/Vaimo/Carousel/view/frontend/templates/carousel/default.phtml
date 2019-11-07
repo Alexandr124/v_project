@@ -1,0 +1,99 @@
+<?php
+/**
+ * Copyright Vaimo Group. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/* @var Vaimo\Carousel\Block\CarouselItem $block */
+
+$itemCollection = $block->getItemCollection();
+$itemCount = count($itemCollection);
+$containerClass = uniqid('js-carousel');
+?>
+
+<?php if ($itemCount > 0): ?>
+    <div class="carousel widget <?php if ($block->isCategoryAnchor()) : echo 'carousel--subcategory'; endif; ?>" data-mage-init='{"vaimoCarousel": {
+        "container": ".<?php echo $containerClass; ?>",
+        "numberOfItems": <?php echo $itemCount ? $itemCount : 0 ?>,
+        "items": <?php echo $block->getNumberOfVisibleItems() ? $block->getNumberOfVisibleItems() : 1; ?>,
+        "nav": <?php echo $block->getUseNav() ? 'true' : 'false'; ?>,
+        "dots": <?php echo $block->getUseDots() ? 'true' : 'false'; ?>,
+        "autoplay": <?php echo $block->isAutoplay() ? 'true' : 'false'; ?>,
+        "autoplayHoverPause": <?php echo $block->isAutoplayHoverPause() ? 'true' : 'false'; ?>,
+        "autoplayTimeout": <?php echo $block->getAutoplayTimeout() ? $block->getAutoplayTimeout() : 5000; ?>
+        }}'>
+        <div class="carousel__items carousel__items--<?php echo $itemCount === 1 ? 'single' : 'multiple'; ?> <?php echo $containerClass; ?>">
+            <?php foreach ($itemCollection as $item): ?>
+                <div class="carousel__item<?php echo $this->getThemeClass($item->getData('theme')); ?>">
+                    <?php if ($item->getImage()): ?>
+                        <?php if ($item->getItemUrl()): ?>
+                            <a href="<?php echo $block->escapeUrl($item->getItemUrl()); ?>" role="link">
+                        <?php endif; ?>
+
+                        <div class="carousel__image">
+                            <picture>
+                                <source srcset="<?php echo $block->getItemImageUrl($item); ?>"
+                                        media="(min-width: 992px)">
+                                <?php if ($item->getImageMedium()): ?>
+                                    <source srcset="<?php echo $block->getItemImageMediumUrl($item); ?>"
+                                            media="(min-width: 768px)">
+                                <?php endif; ?>
+                                <?php if ($item->getImageSmall()): ?>
+                                    <source srcset="<?php echo $block->getItemImageSmallUrl($item); ?>"
+                                            media="(min-width: 320px)">
+                                <?php endif; ?>
+                                <img src="<?php echo $block->getItemImageUrl($item); ?>"
+                                     alt="<?php echo $block->escapeHtml($item->getAltText()); ?>">
+                            </picture>
+                        </div>
+
+                        <?php if ($item->getItemUrl()): ?>
+                            </a>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php if ($item->getTitle() || $item->getText() || $item->getButtonFirstUrl() && $item->getButtonFirstLabel() || $item->getButtonSecondUrl() && $item->getButtonSecondLabel()): ?>
+                        <?php $itemContentWidth = $block->getItemContentWidth($item); ?>
+                        <div <?php if($itemContentWidth > 0): echo 'style="width: ' . $itemContentWidth . '%"'; endif; ?> class="carousel__content carousel__content--<?php echo $block->getItemContentPosition($item); ?> carousel__content--<?php echo $block->getItemContentPositionVertical($item); ?>">
+                                <div class="carousel__inner">
+                                    <?php if ($item->getTitle()): ?>
+                                        <?php if ($item->getItemUrl()): ?>
+                                            <a href="<?php echo $block->escapeUrl($item->getItemUrl()); ?>" role="link">
+                                        <?php endif; ?>
+                                        <div class="carousel__title">
+                                            <h2 class="<?php echo $block->escapeHtml($block->getStyleFontSizeTitle($item->getFontSizeTitle())); ?>"><?php echo $block->escapeHtml($item->getTitle()); ?></h2>
+                                        </div>
+                                        <?php if ($item->getItemUrl()): ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                    <?php if ($item->getText()): ?>
+                                        <div class="carousel__text">
+                                            <?php echo $block->getCarouselItemText($item); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php if (($item->getButtonFirstUrl() && $item->getButtonFirstLabel()) || ($item->getButtonSecondUrl() && $item->getButtonSecondLabel())): ?>
+                                <div class="carousel__buttons">
+                                    <?php if ($item->getButtonFirstUrl() && $item->getButtonFirstLabel()): ?>
+                                        <div class="carousel__button carousel__button--first">
+                                            <a href="<?php echo $block->escapeUrl($item->getButtonFirstUrl()); ?>" class="action button tertiary" role="link">
+                                                <span><?php echo $block->escapeHtml($item->getButtonFirstLabel()); ?></span>
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if ($item->getButtonSecondUrl() && $item->getButtonSecondLabel()): ?>
+                                        <div class="carousel__button carousel__button--second">
+                                            <a href="<?php echo $block->escapeUrl($item->getButtonSecondUrl()); ?>" class="action button tertiary" role="link">
+                                                <span><?php echo $block->escapeHtml($item->getButtonSecondLabel()); ?></span>
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>

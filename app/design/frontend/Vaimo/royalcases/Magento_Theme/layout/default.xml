@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!--<referenceContainer name="page.top" remove="true"/>-->
+        <!--<referenceContainer name="header.panel" remove="true"/>-->
+
+        <referenceBlock name="logo">
+            <arguments>
+
+                <argument name="logo_img_width" xsi:type="number">248</argument>
+                <argument name="logo_img_height" xsi:type="number">86</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!--<referenceContainer name="footer">-->
+                <!--<block class="Vaimo\Helloworld\Block\Widget\Samplewidget"-->
+                       <!--name="samplewidget"-->
+                       <!--template="widget/samplewidget.phtml"-->
+                       <!--after="form.subscribe"/>-->
+
+        <!--</referenceContainer>-->
+        <referenceContainer name="footer">
+
+            <container name="footer.links.wrapper" htmlTag="div" htmlClass="footer-links-wrapper" before="-">
+                <block class="Magento\Framework\View\Element\Html\Links" name="footer_links">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">footer links</argument>
+                    </arguments>
+                </block>
+            </container>
+
+            <container name="footer.socials.wrapper" htmlTag="div" htmlClass="footer-socials-wrapper" after="form.subscribe">
+                <block class="Vaimo\Helloworld\Block\Widget\Samplewidget"
+                       name="samplewidget"
+                       template="widget/samplewidget.phtml"
+                     />
+
+                <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" before="samplewidget" template="Magento_Newsletter::subscribe.phtml"/>
+            </container>
+
+            <container name="footer.contact.links" htmlTag="div" htmlClass="footer-contact-links" before="footer.socials.wrapper">
+                <!--<block class="Vaimo\Helloworld\Block\Widget\Samplewidget"-->
+                       <!--name="samplewidget2"-->
+                       <!--template="widget/samplewidget.phtml"-->
+                <!--/>-->
+
+                <block class="Vaimo\Helloworld\Block\DynamicBlock" name="dynamicblock" template="dynamicblock.phtml" />
+
+            </container>
+
+        </referenceContainer>
+
+    </body>
+</page>

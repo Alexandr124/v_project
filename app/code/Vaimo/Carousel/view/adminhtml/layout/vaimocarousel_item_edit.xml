@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright Vaimo Group. All rights reserved.
+  ~ See LICENSE.txt for license details.
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Vaimo Items Manager</title>
+    </head>
+    <body>
+        <referenceBlock name="menu">
+            <action method="setActive">
+                <argument name="itemId" xsi:type="string">Vaimo_Carousel::OwlCarouselItems</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="page.main.actions">
+            <block class="Magento\Backend\Block\Store\Switcher" name="store_switcher">
+                <action method="setUseConfirm">
+                    <argument name="params" xsi:type="string">1</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+        <block class="Vaimo\Carousel\Block\Adminhtml\Item\Edit" name="item_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+        <block class="Vaimo\Carousel\Block\Adminhtml\Item\Edit\Tabs" name="item_edit_tabs">
+            <block class="Vaimo\Carousel\Block\Adminhtml\Item\Edit\Tab\Item" name="item_edit_tab_item"/>
+        	<action method="addTab">
+                <argument name="name" xsi:type="string">main_section</argument>
+                <argument name="block" xsi:type="string">item_edit_tab_item</argument>
+            </action>
+        </block>
+        </referenceContainer>
+    </body>
+</page>

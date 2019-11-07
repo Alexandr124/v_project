@@ -1,0 +1,330 @@
+/**
+ * Copyright © 2009-2016 Vaimo AB. All rights reserved.
+ * See LICENSE.txt for license details.
+ **/
+
+@import "../lib/swiper.min.css";
+
+//
+//  Variables
+//  ---------------------------------------------
+
+@carousel__color-text: @color-black;
+@carousel__color-arrows: @color-black;
+@carousel__color-dots: @color-black;
+@carousel__height-phone: 320px;
+@carousel__height-tablet: 530px;
+@carousel__height-desktop: 740px;
+@carousel__size-arrows: 50px;
+@carousel__size-dots: 10px;
+@carousel__font-size__base: 2.6rem;
+@carousel__font-size__x-small: 1.3rem;
+@carousel__font-size__small: 1.95rem;
+@carousel__font-size__large: 3.25rem;
+@carousel__font-size__x-large: 3.9rem;
+
+@carousel__color-arrows--url-encoded: replace("@{carousel__color-arrows}", "#", "%23");
+
+//
+//  Common
+//  ---------------------------------------------
+
+& when (@media-common = true) {
+
+
+    //
+    //  Custom styling
+    //  ---------------------------------------------
+
+    .carousel-container .vaimo-cms.row {
+        margin-left: 0; /* Overrides bootstrap.css */
+        margin-right: 0; /* Overrides bootstrap.css */
+
+        div[class*="col-"] {
+            padding-left: 0; /* Overrides bootstrap.css */
+            padding-right: 0; /* Overrides bootstrap.css */
+        }
+    }
+
+    .carousel {
+        position: relative;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        &__item {
+            display: none; /* Prevent stacked images, when loaded owl js will make all items first of type */
+
+            &:first-of-type {
+                display: block;
+            }
+
+            &.carousel__placeholder {
+                display: block;
+                position: relative;
+            }
+        }
+
+        &__image {
+            width: 100%;
+            height: 100%;
+            max-height: @carousel__height-phone;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+
+            .image {
+                width: auto !important; /* Overrides owl.carousel.css */
+                min-width: 100%;
+                min-height: 100%;
+                max-width: none; /* Overrides styles-m.css */
+                -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+                filter: alpha(opacity=0); /* IE 5-7 */
+                opacity: 0; /* modern browsers */
+            }
+        }
+
+        &__content {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-box-align(center);
+            .lib-vendor-prefix-flex-direction(column);
+            -webkit-justify-content: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            max-width: 75%;
+            margin: auto;
+            text-align: center;
+            pointer-events: none; /* Makes whole area "clickable" */
+            -webkit-transform: translate3d(0, 0, 0); /* Prevents content from "flashing" */
+        }
+
+        &__text,
+        &__buttons {
+            pointer-events: auto;
+        }
+
+        &__button {
+            display: inline-block;
+
+            .button {
+                margin: 10px;
+            }
+        }
+
+        &__items--single .owl-controls {
+            display: none;
+        }
+
+        &__items--multiple .owl-controls {
+            display: block;
+        }
+    }
+
+    .column.main {
+        max-width: 100%; /* Fix for carousel widths when added outside "carousel-container" */
+    }
+
+    //
+    //  Owl styling
+    //  ---------------------------------------------
+
+    .owl-controls {
+        text-align: center;
+
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: @carousel__size-arrows;
+            height: @carousel__size-arrows;
+            margin: auto;
+            background-color: transparent;
+            background-position: center center;
+            background-size: cover;
+
+            /* Hide text */
+            text-indent: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .owl-prev {
+            left: 15px;
+            background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22@{carousel__size-arrows}%22%20height%3D%22@{carousel__size-arrows}%22%20viewBox%3D%220%200%201000%201000%22%3E%3Cpath%20fill%3D%22@{carousel__color-arrows--url-encoded}%22%20d%3D%22M723.1%2C990l43.3-43.3L320.2%2C500L766.3%2C53.3L723.1%2C10L233.7%2C500L723.1%2C990z%22%2F%3E%3C%2Fsvg%3E");
+        }
+
+        .owl-next {
+            right: 15px;
+            background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22@{carousel__size-arrows}%22%20height%3D%22@{carousel__size-arrows}%22%20viewBox%3D%220%200%201000%201000%22%3E%3Cpath%20fill%3D%22@{carousel__color-arrows--url-encoded}%22%20d%3D%22M276.9%2C10l-43.3%2C43.3L679.8%2C500L233.7%2C946.7l43.3%2C43.3l489.4-490L276.9%2C10z%22%2F%3E%3C%2Fsvg%3E");
+        }
+
+        .owl-dots {
+            display: inline-block;
+            position: absolute;
+            top: auto;
+            right: 0;
+            bottom: 15px;
+            left: 0;
+            margin: 0 auto;
+            width: 100%; /* Fix for centering dots on IE11 */
+            max-width: 400px;
+        }
+
+        .owl-dot {
+            display: inline-block;
+            margin: @carousel__size-dots/2;
+
+            span {
+                display: block;
+                width: @carousel__size-dots;
+                height: @carousel__size-dots;
+                background-color: transparent;
+                border: 2px solid @carousel__color-dots;
+                border-radius: 50%;
+                transition: all .2s ease;
+
+                &:hover {
+                    background-color: @carousel__color-dots;
+                }
+            }
+
+            &.active span {
+                background-color: @carousel__color-dots;
+            }
+        }
+    }
+}
+
+//
+//  Tablet styling
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .carousel {
+        &__image {
+            max-height: @carousel__height-tablet;
+        }
+    }
+
+    .font-size-x-small {
+        font-size: @carousel__font-size__x-small * 0.75;
+    }
+
+    .font-size-small {
+        font-size: @carousel__font-size__small * 0.75;
+    }
+
+    .font-size-base {
+        font-size: @carousel__font-size__base * 0.75;
+    }
+
+    .font-size-large {
+        font-size: @carousel__font-size__large * 0.75;
+    }
+
+    .font-size-x-large {
+        font-size: @carousel__font-size__x-large * 0.75;
+    }
+}
+
+//
+//  Mobile styling
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .font-size-x-small {
+        font-size: @carousel__font-size__x-small * 0.5;
+    }
+
+    .font-size-small {
+        font-size: @carousel__font-size__small * 0.5;
+    }
+
+    .font-size-base {
+        font-size: @carousel__font-size__base * 0.5;
+    }
+
+    .font-size-large {
+        font-size: @carousel__font-size__large * 0.5;
+    }
+
+    .font-size-x-large {
+        font-size: @carousel__font-size__x-large * 0.5;
+    }
+}
+
+//
+//  Desktop styling
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .carousel {
+        &__image {
+            max-height: @carousel__height-desktop;
+        }
+
+        &__content {
+            &--center,
+            &--left,
+            &--right {
+                width: 50%;
+            }
+
+            &--left {
+                right: auto;
+            }
+
+            &--right {
+                left: auto;
+            }
+
+            &--full-width {
+                width: 100%;
+            }
+        }
+    }
+
+    .owl-carousel {
+        .owl-dot {
+            margin: @carousel__size-dots/2 @carousel__size-dots;
+        }
+
+        .owl-dots {
+            bottom: 30px;
+        }
+    }
+
+    .font-size-x-small {
+        font-size: @carousel__font-size__x-small;
+    }
+
+    .font-size-small {
+        font-size: @carousel__font-size__small;
+    }
+
+    .font-size-base {
+        font-size: @carousel__font-size__base;
+    }
+
+    .font-size-large {
+        font-size: @carousel__font-size__large;
+    }
+
+    .font-size-x-large {
+        font-size: @carousel__font-size__x-large;
+    }
+}

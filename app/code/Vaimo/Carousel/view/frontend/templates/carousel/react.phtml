@@ -1,0 +1,110 @@
+<?php
+/**
+ * Copyright Vaimo Group. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/* @var Vaimo\Carousel\Block\CarouselItem $block */
+
+$itemCollection = $block->getItemCollection();
+$items = [];
+$itemCount = count($itemCollection);
+
+foreach ($itemCollection as $item) {
+    $items[] = $item->getData();
+}
+
+$itemsJson = json_encode($items);
+?>
+
+<?php if ($itemCount > 0): ?>
+<!-- Print first carousel image as placeholder -->
+<?php foreach ($itemCollection as $key => $item): ?>
+    <?php if ($key == 1): ?>
+        <div class="carousel__item<?php echo $this->getThemeClass($item->getData('theme')); ?> carousel__placeholder">
+            <?php if ($item->getImage()): ?>
+                <?php if ($item->getItemUrl()): ?>
+                    <a href="<?php echo $block->escapeUrl($item->getItemUrl()); ?>" role="link">
+                <?php endif; ?>
+
+                <div class="carousel__image">
+                    <picture>
+                        <source srcset="<?php echo $block->getItemImageUrl($item); ?>"
+                                media="(min-width: 992px)">
+                        <?php if ($item->getImageMedium()): ?>
+                            <source srcset="<?php echo $block->getItemImageMediumUrl($item); ?>"
+                                    media="(min-width: 768px)">
+                        <?php endif; ?>
+                        <?php if ($item->getImageSmall()): ?>
+                            <source srcset="<?php echo $block->getItemImageSmallUrl($item); ?>"
+                                    media="(min-width: 320px)">
+                        <?php endif; ?>
+                        <img src="<?php echo $block->getItemImageUrl($item); ?>"
+                             alt="<?php echo $block->escapeHtml($item->getAltText()); ?>">
+                    </picture>
+                </div>
+
+                <?php if ($item->getItemUrl()): ?>
+                    </a>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if ($item->getTitle() || $item->getText() || $item->getButtonFirstUrl() && $item->getButtonFirstLabel() || $item->getButtonSecondUrl() && $item->getButtonSecondLabel()): ?>
+                <?php $itemContentWidth = $block->getItemContentWidth($item); ?>
+                <div <?php if($itemContentWidth > 0): echo 'style="width: ' . $itemContentWidth . '%"'; endif; ?> class="carousel__content carousel__content--<?php echo $block->getItemContentPosition($item); ?> carousel__content--<?php echo $block->getItemContentPositionVertical($item); ?>">
+                    <div class="carousel__inner">
+                        <?php if ($item->getTitle()): ?>
+                            <?php if ($item->getItemUrl()): ?>
+                                <a href="<?php echo $block->escapeUrl($item->getItemUrl()); ?>" role="link">
+                            <?php endif; ?>
+                            <div class="carousel__title">
+                                <h2 class="<?php echo $block->escapeHtml($block->getStyleFontSizeTitle($item->getFontSizeTitle())); ?>"><?php echo $block->escapeHtml($item->getTitle()); ?></h2>
+                            </div>
+                            <?php if ($item->getItemUrl()): ?>
+                                </a>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        <?php if ($item->getText()): ?>
+                            <div class="carousel__text">
+                                <?php echo $block->getCarouselItemText($item); ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <?php if (($item->getButtonFirstUrl() && $item->getButtonFirstLabel()) || ($item->getButtonSecondUrl() && $item->getButtonSecondLabel())): ?>
+                        <div class="carousel__buttons">
+                            <?php if ($item->getButtonFirstUrl() && $item->getButtonFirstLabel()): ?>
+                                <div class="carousel__button carousel__button--first">
+                                    <a href="<?php echo $block->escapeUrl($item->getButtonFirstUrl()); ?>" class="action button tertiary" role="link">
+                                        <span><?php echo $block->escapeHtml($item->getButtonFirstLabel()); ?></span>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($item->getButtonSecondUrl() && $item->getButtonSecondLabel()): ?>
+                                <div class="carousel__button carousel__button--second">
+                                    <a href="<?php echo $block->escapeUrl($item->getButtonSecondUrl()); ?>" class="action button tertiary" role="link">
+                                        <span><?php echo $block->escapeHtml($item->getButtonSecondLabel()); ?></span>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+<?php endforeach; ?>
+    <div data-mage-init='
+        {"vaimoReactCarousel": {
+            "title": "<?php echo $item->getTitle(); ?>",
+            "enable": 1,
+            "arrow_enable": <?php echo $block->getUseNav() ? 'true' : 'false'; ?>,
+            "dots_enable": <?php echo $block->getUseDots() ? 'true' : 'false'; ?>,
+            "autoplay_enable": <?php echo $block->isAutoplay() ? 'true' : 'false'; ?>,
+            "autoplay_timeout": <?php echo $block->getAutoplayTimeout() ? $block->getAutoplayTimeout() : 5000; ?>,
+            "autoplay_hover_pause": <?php echo $block->isAutoplayHoverPause() ? 'true' : 'false'; ?>,
+            "visible_items": <?php echo $itemCount ? $itemCount : 0 ?>,
+            "baseUrl": "<?php echo $block->getBaseUrl(); ?>",
+            "items": <?php echo $itemsJson; ?>
+            }
+        }'
+    >
+<?php endif; ?>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vaimo_Customs::main_menu"
+             title="Vaimo Customs"
+             module="Vaimo_Customs"
+             sortOrder="120"
+             resource="Vaimo_Customs::main_menu" />
+
+        <add id="Vaimo_Brand::profile"
+             title="Vaimo Customs Menu"
+             module="Vaimo_Customs"
+             sortOrder="0"
+             action="customblock/index/index"
+             parent="Vaimo_Customs::main_menu"
+             resource="Vaimo_Customs::main_menu" />
+
+        <add id="Vaimo_Brand::index"
+             title="Vaimo Custom Configurations"
+             module="Vaimo_Customs"
+             sortOrder="0"
+             action="customblock/index/index"
+             parent="Vaimo_Customs::main_menu"
+             resource="Vaimo_Customs::main_menu" />
+    </menu>
+</config>

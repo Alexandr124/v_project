@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright Vaimo Group. All rights reserved.
+  ~ See LICENSE.txt for license details.
+  -->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="vaimo_carousel_widget" class="Vaimo\Carousel\Block\Widget\Carousel">
+        <label translate="true">Carousel Widget</label>
+        <description translate="true">Choose a slider from: Admin » Content » Vaimo Carousel</description>
+        <parameters>
+            <parameter name="carousel" xsi:type="select" source_model="Vaimo\Carousel\Model\Config\Source\WidgetCustom"
+                       visible="true" required="true" sort_order="10">
+                <label translate="true">Carousel</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="true" required="true" sort_order="20">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/carousel.phtml" selected="true">
+                        <label translate="true">Default</label>
+                    </option>
+                    <option name="react" value="widget/react-carousel.phtml" selected="false">
+                        <label translate="true">React Carousel Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

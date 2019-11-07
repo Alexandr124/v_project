@@ -1,0 +1,32 @@
+{
+    "name": "vaimo/module-owl-carousel", 
+    "type": "magento2-module", 
+    "description": "Owl Carousel Library", 
+    "license": "proprietary", 
+    "authors": [
+        {
+            "name": "Marcel Moldovan", 
+            "email": "marcel.moldovan@vaimo.com"
+        }
+    ], 
+    "require": {
+        "magento/framework": "*",
+        "vaimo/composer-patches": "*"
+    }, 
+    "autoload": {
+        "files": [
+            "registration.php"
+        ], 
+        "psr-4": {
+            "Vaimo\\OwlCarousel\\": ""
+        }
+    }, 
+    "extra": {
+        "vaimo-module-category": "Javascript Libraries",
+        "patches": {
+            "vaimo/module-owl-carousel": {
+                "Fix: Allow lazy loading for source tags https://github.com/OwlCarousel2/OwlCarousel2/pull/2058": "patches/Patch-Vaimo_OwlCarousel-Allow-Lazy-Loading-For-Source-Tags.patch"
+            }
+        }
+    }
+}

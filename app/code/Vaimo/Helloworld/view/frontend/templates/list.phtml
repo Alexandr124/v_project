@@ -1,0 +1,12 @@
+<?php
+$items = $this->getCollection();
+
+$blockObj= $block->getLayout()->createBlock('Vaimo\Helloworld\Block\MostViewedProducts');
+
+foreach($items as $item) {
+    echo $item->getName() . '<br/>';
+    echo $blockObj->getProductCount($item->getId()) . '<br/>';
+}
+
+//$blockObj= $block->getLayout()->createBlock('Vaimo\Helloworld\Block\MostViewedProducts');
+//echo $blockObj->getProductCount(19);

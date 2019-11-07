@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright Vaimo Group. All rights reserved.
+  ~ See LICENSE.txt for license details.
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Vaimo Carousels Manager</title>
+    </head>
+    <body>
+        <referenceBlock name="menu">
+            <action method="setActive">
+                <argument name="itemId" xsi:type="string">Vaimo_Carousel::Carousels</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+        <block class="Vaimo\Carousel\Block\Adminhtml\Carousel\Edit" name="item_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+        <block class="Vaimo\Carousel\Block\Adminhtml\Carousel\Edit\Tabs" name="item_edit_tabs">
+            <block class="Vaimo\Carousel\Block\Adminhtml\Carousel\Edit\Tab\Form" name="item_edit_tab_form"/>
+        	<action method="addTab">
+                <argument name="name" xsi:type="string">main_section</argument>
+                <argument name="block" xsi:type="string">item_edit_tab_form</argument>
+            </action>
+            <action method="addTab">
+                <argument name="name" xsi:type="string">item_section</argument>
+                <argument name="block" xsi:type="array">
+                    <item name="label" xsi:type="string">Carousel Items</item>
+                    <item name="title" xsi:type="string">Carousel Items</item>
+                    <item name="url" xsi:type="helper" helper="Vaimo\Carousel\Helper\Data::getCarouselItemUrl"/>
+                    <item name="class" xsi:type="string">ajax</item>
+                </argument>
+            </action>
+        </block>
+        </referenceContainer>
+    </body>
+</page>

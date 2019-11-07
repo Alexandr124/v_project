@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright Vaimo Group. All rights reserved.
+  ~ See LICENSE.txt for license details.
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Vaimo_Carousel::css/lib/animate.css" />
+        <css src="Vaimo_Carousel::css/lib/owl.carousel.css" />
+    </head>
+
+    <body>
+        <referenceContainer name="page.wrapper">
+            <container name="carousel.container" label="Carousel Container" htmlTag="div" htmlClass="carousel-container" before="main.content"/>
+        </referenceContainer>
+    </body>
+</page>

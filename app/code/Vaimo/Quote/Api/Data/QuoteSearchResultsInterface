@@ -1,0 +1,20 @@
+<?php
+
+namespace Vaimo\Quote\Api\Data;
+use Magento\Framework\Api\SearchResultsInterface;
+interface QuoteSearchResultsInterface extends SearchResultsInterface
+{
+    /**
+     * Get lessons list.
+     *
+     * @return QuoteInterface[]
+     */
+    public function getItems();
+    /**
+     * Set blocks list.
+     *
+     * @param QuoteInterface[] $items
+     * @return QuoteSearchResultsInterface
+     */
+    public function setItems(array $items);
+}

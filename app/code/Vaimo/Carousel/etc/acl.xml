@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright Vaimo Group. All rights reserved.
+  ~ See LICENSE.txt for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::content">
+                    <resource id="Vaimo_Carousel::carousel" title="Vaimo Carousel" sortOrder="10">
+                        <resource id="Vaimo_Carousel::carousel_custom_carousels" title="Manage Vaimo Carousels" sortOrder="10" />
+                        <resource id="Vaimo_Carousel::carousel_custom_items" title="Manage Vaimo Carousel Items" sortOrder="20" />
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

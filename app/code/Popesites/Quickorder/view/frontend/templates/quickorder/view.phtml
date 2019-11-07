@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Quickorder/view template.
+Contains quickorder form.
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1><?php echo $block->getTitle(); ?></h1>
+
+<form name="placeOrder" method="POST" action="<?php echo $block->getUrl('quickorder/order/place'); ?>">
+
+    <table id="placeorder-table">
+        <tbody>
+        <tr class="table-header">
+            <th class="sku-col" ><span><?php echo __('#')?><span></th>
+            <th class="item-col" ><span><?php echo __('Item')?><span></th>
+            <th class="qty-col" ><span><?php echo __('Quantity')?><span></th>
+        </tr>
+        <?php for ($index = 1; $index <= 8; $index++ ):?>
+            <tr class="table-item">
+                <td class="sku-col" >
+			<span><?php echo $index ?><span>
+                </td>
+                <td class="item-col" >
+                    <input name="item[<?php echo $index; ?>][sku]" value="" placeholder="<?php echo $block->getPlaceholder() ?>"/>
+                </td>
+                <td class="qty-col" >
+                    <input name="item[<?php echo $index; ?>][qty]" value="" placeholder="<?php echo __('Qty');?>"/>
+                </td>
+            <tr/>
+        <?php endfor; ?>
+        </tbody>
+    </table>
+
+    <div class="actions-toolbar">
+        <input class="action submit primary" type="submit" value="<?php echo $block->getOrderMethodText(); ?>" />
+    </div>
+
+    <input name="form_key" type="hidden" value="<?php echo $block->getFormKey();?>">
+
+</form>
+
+</body>
+</html>
