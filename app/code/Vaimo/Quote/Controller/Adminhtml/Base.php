@@ -14,15 +14,15 @@ use Magento\Framework\View\Result\Page;
 use Magento\Framework\App\ResourceConnection;
 
 use Vaimo\Quote\Api\Data\QuoteInterface;
-use Vaimo\Quote\Api\QuoteRepositoryInterface;
 use Vaimo\Quote\Model\QuoteFactory;
+use Vaimo\Quote\Api\QuoteRepositoryInterface as Repository;
 
 abstract class Base extends Action
 {
     const ACL_RESOURCE          = 'Vaimo_Quote::all';
     const MENU_ITEM             = 'Vaimo_Quote::all';
-    const PAGE_TITLE            = 'Vaimo_Quote_Link';
-    const BREADCRUMB_TITLE      = 'Link';
+    const PAGE_TITLE            = 'Quote module';
+    const BREADCRUMB_TITLE      = 'Quote';
     const QUERY_PARAM_ID        = 'id';
     protected $_resource;
     /** @var Registry  */
@@ -41,14 +41,14 @@ abstract class Base extends Action
         Context $context,
         Registry $registry,
         PageFactory $pageFactory,
-        quoteRepositoryInterface $linkRepository,
+        Repository $repository,
         QuoteFactory $factory,
         LoggerInterface $logger
     ){
         $this->_resource      = $resource;
         $this->registry       = $registry;
         $this->pageFactory    = $pageFactory;
-        $this->repository     = $linkRepository;
+        $this->repository     = $repository;
         $this->modelFactory   = $factory;
         $this->logger         = $logger;
         parent::__construct($context);
@@ -56,7 +56,7 @@ abstract class Base extends Action
     /** {@inheritdoc} */
     public function execute()
     {
-//        $this->_setPageData();
+        $this->_setPageData();
         return $this->resultPage;
     }
     /** {@inheritdoc} */
@@ -76,18 +76,17 @@ abstract class Base extends Action
         }
         return $this->resultPage;
     }
-//    /**
-//     * @return Quote
-//     */
-//    protected function _setPageData()
-//    {
-//        $resultPage = $this->_getResultPage();
+
+    protected function _setPageData()
+    {
+        $resultPage = $this->_getResultPage();
 //        $resultPage->setActiveMenu(static::MENU_ITEM);
-//        $resultPage->getConfig()->getTitle()->prepend((__(static::PAGE_TITLE)));
+        $resultPage->getConfig()->getTitle()->prepend((__(static::PAGE_TITLE)));
 //        $resultPage->addBreadcrumb(__(static::BREADCRUMB_TITLE), __(static::BREADCRUMB_TITLE));
 //        $resultPage->addBreadcrumb(__(static::BREADCRUMB_TITLE), __(static::BREADCRUMB_TITLE));
-//        return $this;
-//    }
+        return $this;
+    }
+
     /** @return \Vaimo\Quote\Model\Quote */
     protected function getModel()
     {

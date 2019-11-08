@@ -11,4 +11,6 @@ interface QuoteRepositoryInterface
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
 
     public function delete(\Vaimo\Quote\Api\Data\QuoteInterface $quote);
+
+    public function save(\Vaimo\Quote\Api\Data\QuoteInterface $quote);
 }

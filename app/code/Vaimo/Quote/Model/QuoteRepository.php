@@ -33,14 +33,18 @@ class QuoteRepository implements QuoteRepositoryInterface
     /** @var CollectionFactory */
     protected $collectionFactory;
 
+    private $resourceModel;
+
     public function __construct(
         ResourceModel $resource,
         QuoteFactory $quoteFactory,
+        \Vaimo\Quote\Model\ResourceModel\Quote $resourceModel,
         CollectionProcessorInterface $collectionProcessor,
         CollectionFactory $collectionFactory
 
     ) {
         $this->resource                 = $resource;
+        $this->resourceModel       = $resourceModel;
         $this->quoteFactory             = $quoteFactory;
         $this->collectionProcessor      = $collectionProcessor;
         $this->collectionFactory        = $collectionFactory;
@@ -72,9 +76,14 @@ class QuoteRepository implements QuoteRepositoryInterface
         // TODO: Implement getList() method.
     }
 
-    public function save(\Vaimo\Quote\Api\Data\QuoteInterface $quote)
+    public function save(QuoteInterface $quote)
     {
-        // TODO: Implement save() method.
+        try {
+            $this->resourceModel->save($quote);
+        } catch (\Exception $exception) {
+            throw new \Magento\Framework\Exception\CouldNotSaveException(__($exception->getMessage()));
+        }
+        return $quote;
 
     }
     /** {@inheritdoc} */
