@@ -8,6 +8,7 @@ use Vaimo\Quote\Api\Data\QuoteInterface;
 
     class Quote extends AbstractModel implements QuoteInterface
     {
+
         protected function _construct()
         {
             $this->_init(ResourceModel::class);
@@ -55,5 +56,15 @@ use Vaimo\Quote\Api\Data\QuoteInterface;
         public function setQuoteStatus($status)
         {
             $this->setData(QuoteInterface::QUOTE_STATUS, $status);
+        }
+
+        public function getQuoteDate()
+        {
+            return $this->getData(QuoteInterface::QUOTE_DATE);
+        }
+
+        public function setQuoteDate($quote_date)
+        {
+            $this->setData(QuoteInterface::QUOTE_DATE, $quote_date);
         }
     }

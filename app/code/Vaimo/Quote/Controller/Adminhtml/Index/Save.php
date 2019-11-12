@@ -6,8 +6,15 @@ use Vaimo\Quote\Api\Data\QuoteInterface as QuoteInterface;
 use Vaimo\Quote\Controller\Adminhtml\Base;
 use Magento\Framework\Exception\LocalizedException;
 
+/**
+ * Class Save
+ * @package Vaimo\Quote\Controller\Adminhtml\Index
+ */
 class Save extends Base
 {
+    /**
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page
+     */
     public function execute()
     {
         $isPost = $this->getRequest()->isPost();
@@ -27,14 +34,14 @@ class Save extends Base
 
             try {
                 $model = $this->repository->save($model);
-                $this->messageManager->addSuccessMessage(__('Elevator has been saved.'));
+                $this->messageManager->addSuccessMessage(__('Quote was saved.'));
                 if ($this->getRequest()->getParam('back')) {
                     return $this->_redirect('*/*/edit', ['id' => $model->getId(), '_current' => true]);
                 }
                 $this->_getSession()->setFormData(null);
                 return $this->redirectToGrid();
             } catch (\Exception $e) {
-                $this->messageManager->addErrorMessage(__('Elevator doesn\'t save' ));
+                $this->messageManager->addErrorMessage(__('Quote wasn\'t saved' ));
             }
             $this->_getSession()->setFormData($formData);
             return (!empty($model->getId())) ?

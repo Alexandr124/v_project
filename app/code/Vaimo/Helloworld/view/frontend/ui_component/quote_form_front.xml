@@ -8,7 +8,7 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">quote_form.quote_form_data_source</item>
+            <item name="provider" xsi:type="string">quote_form_front.quote_form_front_data_source</item>
         </item>
         <item name="label" xsi:type="string" translate="true">Quote Information</item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
@@ -20,7 +20,7 @@
         <namespace>quote_form</namespace>
         <dataScope>data</dataScope>
         <deps>
-            <dep>quote_form.quote_form_data_source</dep>
+            <dep>quote_form_front.quote_form_front_data_source</dep>
         </deps>
     </settings>
     <dataSource name="quote_form_data_source">
@@ -32,7 +32,7 @@
         <settings>
             <submitUrl path="*/*/save"/>
         </settings>
-        <dataProvider class="Vaimo\Quote\DataProvider\BaseQuoteProvider" name="quote_form_data_source">
+        <dataProvider class="Vaimo\Quote\DataProvider\BaseQuoteProvider" name="quote_form_front_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>id</primaryFieldName>
@@ -45,7 +45,7 @@
             <label>Quote Form</label>
         </settings>
 
-        <field name="CustomerFirsttName" formElement="input">
+        <field name="CustomerFirstName" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">quote</item>
@@ -56,6 +56,7 @@
                 <label>First Name</label>
                 <visible>true</visible>
                 <dataScope>CustomerFirstName</dataScope>
+
             </settings>
         </field>
 

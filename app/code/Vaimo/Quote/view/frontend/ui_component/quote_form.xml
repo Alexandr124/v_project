@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="style.css" type="text/css"?>
 <!--
 /**
  * Copyright © Magento, Inc. All rights reserved.
@@ -6,13 +7,15 @@
  */
 -->
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    <argument name="data" xsi:type="array">
+
+    <argument  name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">quote_form.quote_form_data_source</item>
         </item>
         <item name="label" xsi:type="string" translate="true">Quote Information</item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
+
     <settings>
         <buttons>
             <button name="save" class="Vaimo\Quote\Block\Adminhtml\Quote\Buttons\SaveButton"/>
@@ -23,6 +26,7 @@
             <dep>quote_form.quote_form_data_source</dep>
         </deps>
     </settings>
+
     <dataSource name="quote_form_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
@@ -32,7 +36,7 @@
         <settings>
             <submitUrl path="*/*/save"/>
         </settings>
-        <dataProvider class="Vaimo\Quote\DataProvider\BaseQuoteProvider" name="quote_form_data_source">
+        <dataProvider class="Vaimo\Quote\DataProvider\Frontend\CustomerDataProvider" name="quote_form_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>id</primaryFieldName>
@@ -45,7 +49,7 @@
             <label>Quote Form</label>
         </settings>
 
-        <field name="CustomerFirsttName" formElement="input">
+        <field name="first_name" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">quote</item>
@@ -55,11 +59,12 @@
             <settings>
                 <label>First Name</label>
                 <visible>true</visible>
-                <dataScope>CustomerFirstName</dataScope>
+                <dataScope>first_name</dataScope>
+
             </settings>
         </field>
 
-        <field name="CustomerLastName" formElement="input">
+        <field name="last_name" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">elevator</item>
@@ -69,12 +74,12 @@
             <settings>
                 <label>Last Name</label>
                 <visible>true</visible>
-                <dataScope>CustomerLastName</dataScope>
+                <dataScope>last_name</dataScope>
 
             </settings>
         </field>
 
-        <field name="CustomerPhoneNumber" formElement="input">
+        <field name="phone_number" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">elevator</item>
@@ -84,12 +89,12 @@
             <settings>
                 <label>Phone Number</label>
                 <visible>true</visible>
-                <dataScope>CustomerPhoneNumber</dataScope>
+                <dataScope>phone_number</dataScope>
 
             </settings>
         </field>
 
-        <field name="Date">
+        <field name="quote_date">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">string</item>
@@ -97,7 +102,7 @@
                     <item name="formElement" xsi:type="string">date</item>
                     <item name="source" xsi:type="string">task</item>
                     <item name="sortOrder" xsi:type="number">10</item>
-                    <item name="dataScope" xsi:type="string">Date</item>
+                    <item name="dataScope" xsi:type="string">quote_date</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -108,22 +113,19 @@
             </argument>
         </field>
 
-        <field name="Status">
+
+        <field name="mybutton">
             <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">Vaimo\Quote\Model\Category\Attribute\Source\Category</item>
                 <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" translate="true" xsi:type="string">Quote Status</item>
-                    <item name="formElement" xsi:type="string">select</item>
-                    <item name="source" xsi:type="string">flip</item>
-                    <item name="sortOrder" xsi:type="number">20</item>
-                    <item name="dataScope" xsi:type="string">Status</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">false</item>
-                    </item>
+                    <item name="component" xsi:type="string">Vaimo_Quote/js/button</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">button</item>
                 </item>
             </argument>
         </field>
 
     </fieldset>
 </form>
+
+
+

@@ -21,6 +21,10 @@ use Vaimo\Quote\Model\QuoteFactory;
 use Vaimo\Quote\Model\ResourceModel\Quote\CollectionFactory;
 
 
+/**
+ * Class QuoteRepository
+ * @package Vaimo\Quote\Model
+ */
 class QuoteRepository implements QuoteRepositoryInterface
 {
 
@@ -33,8 +37,19 @@ class QuoteRepository implements QuoteRepositoryInterface
     /** @var CollectionFactory */
     protected $collectionFactory;
 
+    /**
+     * @var ResourceModel
+     */
     private $resourceModel;
 
+    /**
+     * QuoteRepository constructor.
+     * @param ResourceModel $resource
+     * @param \Vaimo\Quote\Model\QuoteFactory $quoteFactory
+     * @param ResourceModel $resourceModel
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param CollectionFactory $collectionFactory
+     */
     public function __construct(
         ResourceModel $resource,
         QuoteFactory $quoteFactory,
@@ -51,7 +66,11 @@ class QuoteRepository implements QuoteRepositoryInterface
     }
 
 
-
+    /**
+     * @param $id
+     * @return mixed
+     * @throws NoSuchEntityException
+     */
     public function getById($id)
     {
         $quote = $this->quoteFactory->create();
@@ -62,6 +81,10 @@ class QuoteRepository implements QuoteRepositoryInterface
         return $quote;
     }
 
+    /**
+     * @param $id
+     * @return mixed|void
+     */
     public function deleteById($id)
     {
         try {
@@ -71,11 +94,20 @@ class QuoteRepository implements QuoteRepositoryInterface
         }
     }
 
+    /**
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return mixed|void
+     */
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria)
     {
         // TODO: Implement getList() method.
     }
 
+    /**
+     * @param QuoteInterface $quote
+     * @return mixed|QuoteInterface
+     * @throws CouldNotSaveException
+     */
     public function save(QuoteInterface $quote)
     {
         try {

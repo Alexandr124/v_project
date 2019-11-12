@@ -9,6 +9,9 @@
             <block class="Vaimo\Helloworld\Block\Widget\Samplewidget" name="samplewidget" template="widget/samplewidget.phtml" />
 
             <block class="Vaimo\Helloworld\Block\DynamicBlock" name="dynamicblock" template="dynamicblock.phtml" />
+
+            <uiComponent name="quote_form_front"/>
+
         </referenceContainer>
     </body>
 </page>

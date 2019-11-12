@@ -34,7 +34,11 @@ class BaseQuoteProvider extends AbstractDataProvider
      */
     public function getData()
     {
-
+        $model = $this->sessionManager->getCurrentQuoteModel();
+        $this->sessionManager->setCurrentQuoteModel(null);
+        if($model!=null) {
+            return [$model->getId()=> $model->getData()];
+        } else return [];
     }
 
     public function addFilter(\Magento\Framework\Api\Filter $filter)

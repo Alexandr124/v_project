@@ -15,9 +15,9 @@ class category implements \Magento\Framework\Option\ArrayInterface
     public function toOptionArray()
     {
         return [
-            ['value' => 1, 'label' => 'pending'],
-            ['value' => 2, 'label' => 'open'],
-            ['value' => 3, 'label' => 'closed']
+            ['value' => 'pending', 'label' => 'pending'],
+            ['value' => 'open',    'label' => 'open'],
+            ['value' => 'closed',  'label' => 'closed']
         ];
     }
 }

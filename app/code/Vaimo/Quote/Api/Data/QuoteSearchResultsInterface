@@ -2,6 +2,11 @@
 
 namespace Vaimo\Quote\Api\Data;
 use Magento\Framework\Api\SearchResultsInterface;
+
+/**
+ * Interface QuoteSearchResultsInterface
+ * @package Vaimo\Quote\Api\Data
+ */
 interface QuoteSearchResultsInterface extends SearchResultsInterface
 {
     /**

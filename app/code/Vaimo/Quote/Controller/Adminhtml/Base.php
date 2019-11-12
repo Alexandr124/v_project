@@ -12,6 +12,7 @@ use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\Session\SessionManagerInterface;
 
 use Vaimo\Quote\Api\Data\QuoteInterface;
 use Vaimo\Quote\Model\QuoteFactory;
@@ -33,14 +34,18 @@ abstract class Base extends Action
     protected $model;
     /** @var Page */
     protected $resultPage;
+    protected $sessionManager;
     protected $repository;
     /** @var Logger */
     protected $logger;
+
+
     public function __construct(
         ResourceConnection $resource,
         Context $context,
         Registry $registry,
         PageFactory $pageFactory,
+        SessionManagerInterface $sessionManager,
         Repository $repository,
         QuoteFactory $factory,
         LoggerInterface $logger
@@ -48,6 +53,7 @@ abstract class Base extends Action
         $this->_resource      = $resource;
         $this->registry       = $registry;
         $this->pageFactory    = $pageFactory;
+        $this->sessionManager  = $sessionManager;
         $this->repository     = $repository;
         $this->modelFactory   = $factory;
         $this->logger         = $logger;
@@ -106,6 +112,7 @@ abstract class Base extends Action
     }
     /**
      * @return ResponseInterface
+     * Returning us to the main Grid(Index Controller)
      */
     protected function redirectToGrid()
     {
