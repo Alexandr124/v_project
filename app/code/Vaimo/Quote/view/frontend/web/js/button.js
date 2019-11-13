@@ -2,6 +2,7 @@ define(['jquery', 'underscore', 'uiRegistry', 'Magento_Ui/js/form/components/but
         'Magento_Ui/js/form/form'],
     function ($, _, uiRegistry, button) {
         var mydata = uiRegistry.get("quote_form.quote_form_data_source");
+        console.log(mydata);
 
         return button.extend({
             defaults: {
@@ -10,7 +11,7 @@ define(['jquery', 'underscore', 'uiRegistry', 'Magento_Ui/js/form/components/but
             action: function () {
                 $.ajax({
                     type: "POST",
-                    url: "/vaimo/quote/subscriber/newaction",
+                    url: "/firstproject/quotef/frontend/save",
                     data: mydata.data
                 })
             }

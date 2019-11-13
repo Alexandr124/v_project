@@ -19,6 +19,7 @@
                 <uiComponent name="quote_form"/>
             </container>
 
+
         </referenceContainer>
     </body>
 </page>

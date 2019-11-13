@@ -6,6 +6,7 @@
         <referenceContainer name="content">
             <block class="Vaimo\Quote\Block\Helloworld" name="helloworld" template="helloworld.phtml" />
 
+            <block class="Vaimo\Quote\Block\Subscribe" name="subscribe" template="subscribe.phtml" />
 
         </referenceContainer>
     </body>

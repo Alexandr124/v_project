@@ -72,7 +72,7 @@
             </argument>
         </column>
 
-        <column name="CustomerFirstName">
+        <column name="first_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Name</item>
@@ -80,7 +80,7 @@
             </argument>
         </column>
 
-        <column name="CustomerLastName">
+        <column name="last_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Surname</item>
@@ -88,7 +88,7 @@
             </argument>
         </column>
 
-        <column name="CustomerPhoneNumber">
+        <column name="phone_number">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Number</item>
@@ -96,7 +96,7 @@
             </argument>
         </column>
 
-        <column name="Date" class="Magento\Ui\Component\Listing\Columns\Date">
+        <column name="quote_date" class="Magento\Ui\Component\Listing\Columns\Date">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <!-- <item name="editor" xsi:type="string">date</item> -->
@@ -115,7 +115,7 @@
             </argument>
         </column>
 
-        <column name="Status">
+        <column name="quote_status">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Status</item>

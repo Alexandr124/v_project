@@ -114,12 +114,13 @@
         </field>
 
 
-        <field name="mybutton">
+        <field name="mybutton" >
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="component" xsi:type="string">Vaimo_Quote/js/button</item>
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="formElement" xsi:type="string">button</item>
+                    <item name="title" xsi:type="string">Send</item>
                 </item>
             </argument>
         </field>

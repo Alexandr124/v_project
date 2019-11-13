@@ -28,7 +28,8 @@ if ($helper->isLoggedIn()) {
         ?><p>Guest</p><?php
     }
 
+$blockObj= $block->getLayout()->createBlock('Vaimo\Quote\Block\Subscribe');
+echo $blockObj->getFormActionUrl();
+
 ?>
-
-
 

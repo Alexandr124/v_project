@@ -23,4 +23,6 @@ class Subscribe extends \Magento\Framework\View\Element\Template
     {
         return $this->getUrl('popuptest/subscriber/newaction', ['_secure' => true]);
     }
+
+
 }
