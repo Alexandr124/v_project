@@ -35,7 +35,7 @@
     "babel-plugin-transform-modules-requirejs": "^0.1.4",
     "babel-preset-react": "^6.24.1",
     "del": "^4.1.1",
-    "grunt": "^1.0.1",
+    "grunt": "^1.3.0",
     "grunt-babel": "^7.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^8.0.0",
